@@ -1,0 +1,517 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://david-erb.github.io/dtmc_zephyr/functions/index.html">
+      
+      
+        <link rel="prev" href="../index.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Functions - dtmc_zephyr Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="dtmc_zephyr Library" class="md-header__button md-logo" aria-label="dtmc_zephyr Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dtmc_zephyr Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/david-erb/dtmc_zephyr/blob/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="dtmc_zephyr Library" class="md-nav__button md-logo" aria-label="dtmc_zephyr Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    dtmc_zephyr Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/david-erb/dtmc_zephyr/blob/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Functions</h1>
+
+<details class="note">
+<summary><code>dtadc_zephyr_saadc</code>&nbsp;&nbsp;&nbsp;Zephyr nRF SAADC backend for the dtadc interface.</summary>
+<p>Implements the dtadc vtable using the Zephyr ADC driver against the nRF
+Successive Approximation ADC (SAADC). Up to eight channels are configured
+individually with channel ID, analog input pin, gain, reference, acquisition
+time, and resolution. A background task scans all channels at a configurable
+interval and delivers results via a per-scan callback. An optional tasker
+info callback provides runtime task diagnostics.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtadc_zephyr_saadc.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtadc_zephyr_saadc.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtgpiopin_zephyr</code>&nbsp;&nbsp;&nbsp;Zephyr GPIO backend for the dtgpiopin cross-platform interface.</summary>
+<p>Implements the dtgpiopin vtable for Zephyr targets, targeting nRF5340-class
+SoCs with two 32-pin ports. A single global pin number encodes both port
+and pin (port = pin / 32, local = pin % 32), avoiding multi-field port
+selection in the config. Mode, pull, and drive strength follow the common
+dtgpiopin enumerations, keeping application code portable across platforms.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtgpiopin_zephyr.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtgpiopin_zephyr.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtiox_zephyr_canbus</code>&nbsp;&nbsp;&nbsp;Zephyr CAN backend for the dtiox byte-stream interface.</summary>
+<p>Implements the dtiox vtable over the Zephyr CAN subsystem, presenting bus
+traffic as a plain byte stream. A configurable TX identifier and an RX ring
+buffer isolate the application from frame boundaries. Both standard 11-bit
+and extended 29-bit identifiers are supported via the use_extended_id flag.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtiox_zephyr_canbus.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtiox_zephyr_canbus.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtiox_zephyr_modbus_slave</code>&nbsp;&nbsp;&nbsp;Zephyr Modbus RTU slave backend for the dtiox interface.</summary>
+<p>Implements the dtiox vtable using the Zephyr Modbus subsystem in slave
+mode, identified by a devicetree interface name (e.g. "MODBUS"). Incoming
+Modbus register traffic is surfaced as a byte stream through the standard
+dtiox read path; unit ID, UART framing parameters, and RX ring buffer
+capacity are all set at configuration time without exposing Zephyr Modbus
+API types.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtiox_zephyr_modbus_slave.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtiox_zephyr_modbus_slave.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtiox_zephyr_uartirq</code>&nbsp;&nbsp;&nbsp;Zephyr interrupt-driven UART backend for the dtiox interface.</summary>
+<p>Implements the dtiox vtable using the Zephyr UART interrupt API, identified
+by a devicetree node name (e.g. "uart0"). Baud rate, parity, data bits,
+stop bits, and flow control are applied through the shared
+dtuart_helper_config_t. Separate RX and TX ring buffer capacities are
+configurable, decoupling interrupt latency from application read timing.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtiox_zephyr_uartirq.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtiox_zephyr_uartirq.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtlightsensor_zephyr</code>&nbsp;&nbsp;&nbsp;Zephyr sensor subsystem backend for the dtlightsensor interface.</summary>
+<p>Implements the dtlightsensor vtable using the Zephyr sensor driver API,
+identified by a device name string. Integration time and gain (four levels
+from low to max) are set at configuration time, allowing sensitivity to be
+tuned to the ambient environment. The activate/sample/dispose contract
+matches other dtlightsensor backends, keeping application code portable
+across platforms.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtlightsensor_zephyr.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtlightsensor_zephyr.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtmc</code>&nbsp;&nbsp;&nbsp;Canonical top-level include for the Zephyr platform library.</summary>
+<p>Re-exports the full dtmc_zephyr interface under the platform-agnostic
+name <dtmc/dtmc.h>. Application code includes this header to remain
+decoupled from the underlying platform selection while still accessing
+the flavor string, version string, and Zephyr shell initializer
+provided by dtmc_zephyr.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtmc.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtmc.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtmc_logging</code>&nbsp;&nbsp;&nbsp;TAG-prefixed logging macros over the Zephyr LOG subsystem.</summary>
+<p>Provides dtlog_info, dtlog_debug, and dtlog_error macros that prepend a
+module tag name to every message and forward to the corresponding Zephyr
+LOG_INF / LOG_DBG / LOG_ERR calls. A single DTMC_LOGGING(tagname) macro
+both registers the Zephyr log module at DBG level and defines the static
+TAG string, so each translation unit needs only one declaration line.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtmc_logging.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtmc_logging.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtmc_zephyr</code>&nbsp;&nbsp;&nbsp;Zephyr platform entry point for the dtmc embedded framework.</summary>
+<p>Declares the platform flavor and version strings and a shell
+initializer that registers dtmc diagnostic commands with the Zephyr
+shell subsystem. Provides the common dtmc_flavor and dtmc_version
+accessors used by other modules to report their build identity at
+runtime.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtmc_zephyr.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtmc_zephyr.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtnetportal_btle</code>&nbsp;&nbsp;&nbsp;Zephyr Bluetooth LE GATT backend for the dtnetportal interface.</summary>
+<p>Implements the dtnetportal vtable over the Zephyr BLE stack, advertising
+under a configurable device name and exchanging topic payloads via GATT
+characteristics. A new-buffer callback delivers inbound data to the
+application, and a GATT read callback services outbound reads from a
+connected central. An optional advertising tasker manages the BLE
+advertisement loop as a named Zephyr thread.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtnetportal_btle.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtnetportal_btle.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtnetportal_coap</code>&nbsp;&nbsp;&nbsp;Zephyr CoAP/OpenThread network portal backend for the dtnetportal interface.</summary>
+<p>Implements the dtnetportal vtable using CoAP over an OpenThread network.
+An OpenThread dataset (supplied as a hex TLV string) configures the Thread
+network at activation. Publish target, client identity, TLS certificate
+paths, and a local CoAP listen port are configurable. An error callback
+delivers async transport failures to the application without polling, and
+an IP address callback reports discovered addresses on the Thread interface.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/dtnetportal_coap.h" target="_blank">dtmc_zephyr_library/include/dtmc/dtnetportal_coap.h</a></p>
+</details>
+<details class="note">
+<summary><code>dtmc_zephyr</code>&nbsp;&nbsp;&nbsp;Library flavor and version identification macros.</summary>
+<p>Provides DTMC_ZEPHYR_VERSION string constants that identify the library build at runtime.
+Used by dtruntime and diagnostic routines to report the active library variant in environment tables and
+log output.</p>
+<p>This file is processed by tooling in the automated build system.
+It's important to maintain the structure and formatting of the version macros for compatibility with version parsing scripts.</p>
+<p><a href="https://github.com/david-erb/dtmc_zephyr/blob/main/dtmc_zephyr_library/include/dtmc/version.h" target="_blank">dtmc_zephyr_library/include/dtmc/version.h</a></p>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.indexes", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
