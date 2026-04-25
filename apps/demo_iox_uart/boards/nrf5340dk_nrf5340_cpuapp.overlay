@@ -1,0 +1,14 @@
+/* a second UART (uart1) on Tx=P1.01 Rx=P1.00 */
+&uart1 {
+    label = "demo_uart";
+    status = "okay";
+};
+
+/* native USB CDC ACM virtual serial port */
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+        compatible = "zephyr,cdc-acm-uart";
+        label = "CDC_ACM_0";
+        status = "okay";
+    };
+};

@@ -1,0 +1,39 @@
+/* free the conflicting block if board dts enabled it */
+&i2c0 { status = "disabled"; };
+
+/* pins can stay the same; instances are not tied to pins */
+&pinctrl {
+    i2c1_default: i2c1_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 26)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 27)>;
+        };
+    };
+    i2c1_sleep: i2c1_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 26)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 27)>;
+            low-power-enable;
+        };
+    };
+};
+
+&i2c1 {
+    status = "okay";
+    compatible = "nordic,nrf-twim";
+    pinctrl-0 = <&i2c1_default>;
+    pinctrl-1 = <&i2c1_sleep>;
+    pinctrl-names = "default", "sleep";
+    clock-frequency = <I2C_BITRATE_STANDARD>;
+
+    tsl: tsl2591@29 {
+        compatible = "ams,tsl2591";
+        reg = <0x29>;
+        label = "TSL2591";
+    };
+};
+
+/* keep the alias your C expects */
+ / {
+     aliases { lightsensor = &tsl; };
+ };

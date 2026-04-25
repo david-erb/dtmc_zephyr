@@ -1,0 +1,391 @@
++ rm -rf build
+
++ west build -b nrf5340dk/nrf5340/cpuapp --pristine
+-- west build: generating a build system
+Loading Zephyr module(s) (Zephyr base): sysbuild_default
+-- Found Python3: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.10") found components: Interpreter 
+-- Cache files will be written to: /home/user/.cache/zephyr
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- Board: nrf5340dk, qualifiers: nrf5340/cpuapp
+Parsing /opt/nrf_westworkspace/zephyr/share/sysbuild/Kconfig
+Loaded configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/_sysbuild/empty.conf'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/_sysbuild/empty.conf'
+Configuration saved to '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/zephyr/.config'
+Kconfig header saved to '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/_sysbuild/autoconf.h'
+-- 
+   *****************************************
+   * Running CMake for demo_netportal_uart *
+   *****************************************
+
+Loading Zephyr default modules (Zephyr base).
+-- Application: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart
+-- CMake version: 3.22.1
+-- Found Python3: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.10") found components: Interpreter 
+-- Cache files will be written to: /home/user/.cache/zephyr
+-- Zephyr version: 4.1.99 (/opt/nrf_westworkspace/zephyr)
+-- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+-- Board: nrf5340dk, qualifiers: nrf5340/cpuapp
+-- Found host-tools: zephyr 0.17.2 (/opt/toolchains/zephyr-sdk-0.17.2)
+-- Found toolchain: zephyr 0.17.2 (/opt/toolchains/zephyr-sdk-0.17.2)
+-- Found Dtc: /usr/bin/dtc (found suitable version "1.6.1", minimum required is "1.4.6") 
+-- Found BOARD.dts: /opt/nrf_westworkspace/zephyr/boards/nordic/nrf5340dk/nrf5340dk_nrf5340_cpuapp.dts
+-- Found devicetree overlay: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/boards/nrf5340dk_nrf5340_cpuapp.overlay
+-- Generated zephyr.dts: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/zephyr.dts
+-- Generated pickled edt: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/edt.pickle
+-- Generated devicetree_generated.h: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/include/generated/zephyr/devicetree_generated.h
+
+warning: KERNEL_SHELL (defined at subsys/shell/modules/kernel_service/Kconfig:6) was assigned the
+value 'y' but got the value 'n'. Check these unsatisfied dependencies: SHELL (=n). See
+http://docs.zephyrproject.org/latest/kconfig.html#CONFIG_KERNEL_SHELL and/or look up KERNEL_SHELL in
+the menuconfig/guiconfig interface. The Application Development Primer, Setting Configuration
+Values, and Kconfig - Tips and Best Practices sections of the manual might be helpful too.
+
+
+warning: USBD_CDC_ACM_CLASS (defined at subsys/usb/device_next/class/Kconfig.cdc_acm:5) was assigned
+the value 'y' but got the value 'n'. Check these unsatisfied dependencies: USB_DEVICE_STACK_NEXT
+(=n). See http://docs.zephyrproject.org/latest/kconfig.html#CONFIG_USBD_CDC_ACM_CLASS and/or look up
+USBD_CDC_ACM_CLASS in the menuconfig/guiconfig interface. The Application Development Primer,
+Setting Configuration Values, and Kconfig - Tips and Best Practices sections of the manual might be
+helpful too.
+
+Parsing /opt/nrf_westworkspace/zephyr/Kconfig
+Loaded configuration '/opt/nrf_westworkspace/zephyr/boards/nordic/nrf5340dk/nrf5340dk_nrf5340_cpuapp_defconfig'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/prj.conf'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/../DTMC_ZEPHYR_SYSTEM_COMMON.conf'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/../DTMC_ZEPHYR_DTIOX_UART_COMMON.conf'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/../DTMC_ZEPHYR_DTIOX_USBD_CDC.conf'
+Merged configuration '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/.config.sysbuild'
+Configuration saved to '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/.config'
+Kconfig header saved to '/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/include/generated/zephyr/autoconf.h'
+-- Found GnuLd: /opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/arm-zephyr-eabi/bin/ld.bfd (found version "2.38") 
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
+CMake Warning at /opt/nrf_westworkspace/zephyr/subsys/usb/device/CMakeLists.txt:22 (message):
+  CONFIG_USB_DEVICE_VID has default value 0x2FE3.
+
+  This value is only for testing and MUST be configured for USB products.
+
+
+CMake Warning at /opt/nrf_westworkspace/zephyr/subsys/usb/device/CMakeLists.txt:28 (message):
+  CONFIG_USB_DEVICE_PID has default value 0x100.
+
+  This value is only for testing and MUST be configured for USB products.
+
+
+-- Using ccache: /usr/bin/ccache
+-- Found gen_kobject_list: /opt/nrf_westworkspace/zephyr/scripts/build/gen_kobject_list.py
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build
+-- west build: building application
+[1/10] Creating directories for 'demo_netportal_uart'
+[2/10] No download step for 'demo_netportal_uart'
+[3/10] No update step for 'demo_netportal_uart'
+[4/10] No patch step for 'demo_netportal_uart'
+[5/10] No configure step for 'demo_netportal_uart'
+[5/10] Performing build step for 'demo_netportal_uart'
+[0/2] Re-checking globbed directories...
+[1/269] Preparing syscall dependency handling
+
+[2/269] Generating ../../zephyr/include/generated/zephyr_commit.h
+[3/269] Generating ../../zephyr/include/generated/ncs_commit.h
+[4/269] Generating ../../zephyr/include/generated/ncs_version.h
+[5/269] Generating include/generated/zephyr/version.h
+-- Zephyr version: 4.1.99 (/opt/nrf_westworkspace/zephyr), build: ncs-v3.1.0
+[6/269] Generating misc/generated/syscalls_subdirs.trigger
+[7/269] Generating misc/generated/syscalls.json, misc/generated/struct_tags.json
+[8/269] Generating include/generated/device-api-sections.ld, include/generated/device-api-sections.cmake
+[9/269] Generating include/generated/zephyr/syscall_dispatch.c, include/generated/zephyr/syscall_exports_llext.c, syscall_weakdefs_llext.c, include/generated/zephyr/syscall_list.h
+[10/269] Generating include/generated/zephyr/kobj-types-enum.h, include/generated/zephyr/otype-to-str.h, include/generated/zephyr/otype-to-size.h
+[11/269] Generating include/generated/zephyr/driver-validation.h
+[12/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetbridge.c.obj
+[13/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetportal.c.obj
+[14/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtarray_float.c.obj
+[15/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtarray_int32.c.obj
+[16/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtbuffer.c.obj
+[17/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtbytes.c.obj
+[18/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtchunker.c.obj
+[19/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dterr.c.obj
+[20/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dteventlogger.c.obj
+[21/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtflipper.c.obj
+[22/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtglyph.c.obj
+[23/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtglyph_dos.c.obj
+[24/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtguid.c.obj
+[25/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtguidable.c.obj
+[26/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtguidable_pool.c.obj
+[27/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtheaper.c.obj
+[28/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtkvp.c.obj
+[29/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtlcg.c.obj
+[30/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtlog.c.obj
+[31/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtledger.c.obj
+[32/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtobject.c.obj
+[33/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtpackable.c.obj
+[34/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtpackx.c.obj
+[35/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtparse.c.obj
+[36/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtrandomizer.c.obj
+[37/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtrandomizer_browngrav.c.obj
+[38/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtrandomizer_uniform.c.obj
+[39/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtraster.c.obj
+[40/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtraster_draw.c.obj
+[41/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtraster_rgb565.c.obj
+[42/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtraster_rgba8888.c.obj
+[43/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtringfifo.c.obj
+[44/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtstr.c.obj
+[45/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dttrap.c.obj
+[46/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtunittest.c.obj
+[47/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtvtable.c.obj
+[48/269] Building C object dtcore_library/CMakeFiles/dtcore_library.dir/src/dtwallclock.c.obj
+[49/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtadc.c.obj
+[50/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtbuffer_distributor.c.obj
+[51/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtbusywork.c.obj
+[52/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtcpu_agnostic.c.obj
+[53/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtdebouncer.c.obj
+[54/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtdisplay.c.obj
+[55/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtdotstar.c.obj
+[56/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtdotstar_dummy.c.obj
+[57/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtframer.c.obj
+[58/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtframer_simple.c.obj
+[59/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtgpiopin.c.obj
+[60/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtgpiopin_dummy.c.obj
+[61/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtinterval.c.obj
+[62/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtiox.c.obj
+[63/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtinterval_scheduled.c.obj
+[64/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtiox_dummy.c.obj
+[65/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtlightsensor.c.obj
+[66/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtlightsensor_dummy.c.obj
+[67/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtmanifold.c.obj
+[68/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtmodbus_helpers.c.obj
+[69/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetportal_iox.c.obj
+[70/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetportal_shm.c.obj
+[71/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetprofile.c.obj
+[72/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnetprofile_distributor.c.obj
+[73/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtpackable_object_distributor.c.obj
+[74/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtnvblob.c.obj
+[75/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtradioconfig.c.obj
+[76/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dttasker.c.obj
+[77/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dttasker_registry.c.obj
+[78/269] Building C object dtmc_base_library/CMakeFiles/dtmc_base_library.dir/src/dtuart_helpers.c.obj
+[79/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_adc_print.c.obj
+[80/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_display_hello.c.obj
+[81/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_gpiopin_blink.c.obj
+[82/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_gpiopin_button.c.obj
+[83/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_gpiopin_record.c.obj
+[84/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_helpers.c.obj
+[85/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_iox.c.obj
+[86/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_netportal.c.obj
+[87/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_runtime_info.c.obj
+[88/269] Building C object dtmc_base_demos/CMakeFiles/dtmc_base_demos.dir/src/demo_write_kvp.c.obj
+[89/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtmc_zephyr.c.obj
+[90/269] Linking C static library dtcore_library/libdtcore_library.a
+[91/269] Linking C static library dtmc_base_library/libdtmc_base_library.a
+[92/269] Linking C static library dtmc_base_demos/libdtmc_base_demos.a
+[93/269] Building C object zephyr/CMakeFiles/offsets.dir/arch/arm/core/offsets/offsets.c.obj
+[94/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtiox_zephyr_uartirq__helpers.c.obj
+[95/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtsemaphore_zephyr.c.obj
+[96/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtruntime_zephyr.c.obj
+[97/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtiox_zephyr_uartirq__callbacks.c.obj
+[98/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dttasker_zephyr.c.obj
+[99/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtlock_zephyr.c.obj
+[100/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtgpiopin_zephyr.c.obj
+[101/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtbufferqueue_zephyr.c.obj
+[102/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtiox_zephyr_uartirq__object.c.obj
+[103/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtcpu_zephyr.c.obj
+[104/269] Building C object dtmc_zephyr_library/CMakeFiles/dtmc_zephyr_library.dir/src/dtiox_zephyr_uartirq.c.obj
+[105/269] Generating include/generated/zephyr/offsets.h
+[106/269] Linking C static library dtmc_zephyr_library/libdtmc_zephyr_library.a
+[107/269] Building C object CMakeFiles/app.dir/src/main.c.obj
+[108/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/dec.c.obj
+[109/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/hex.c.obj
+[110/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/timeutil.c.obj
+[111/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/ring_buffer.c.obj
+[112/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/last_section_id.c.obj
+[113/269] Building C object zephyr/CMakeFiles/zephyr.dir/misc/generated/configs.c.obj
+[114/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_cache.c.obj
+[115/269] Linking C static library app/libapp.a
+[116/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_complete.c.obj
+[117/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/thread_entry.c.obj
+[118/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf_packaged.c.obj
+[119/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/onoff.c.obj
+[120/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/printk.c.obj
+[121/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/heap/heap.c.obj
+[122/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/sem.c.obj
+[123/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/tracing/tracing_none.c.obj
+[124/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/usb/device/usb_device.c.obj
+[125/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/rb.c.obj
+[126/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/assert.c.obj
+[127/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/usb/device/usb_descriptor.c.obj
+[128/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/usb/device/usb_transfer.c.obj
+[129/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/usb/device/class/cdc_acm.c.obj
+[130/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/usb/device/usb_work_q.c.obj
+[131/269] Building C object zephyr/CMakeFiles/zephyr.dir/opt/nrf_westworkspace/nrf/lib/boot_banner/banner.c.obj
+[132/269] Building C object zephyr/CMakeFiles/zephyr.dir/opt/nrf_westworkspace/nrf/subsys/partition_manager/flash_map_partition_manager.c.obj
+[133/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/mem_mgmt/mem_attr.c.obj
+[134/269] Building C object zephyr/CMakeFiles/zephyr.dir/opt/nrf_westworkspace/nrfxlib/crypto/nrf_cc312_platform/src/nrf_cc3xx_platform_abort_zephyr.c.obj
+[135/269] Building C object zephyr/CMakeFiles/zephyr.dir/opt/nrf_westworkspace/nrfxlib/crypto/nrf_cc312_platform/src/nrf_cc3xx_platform_mutex_zephyr.c.obj
+[136/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_mgmt.c.obj
+[137/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_output.c.obj
+[138/269] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault_s.S.obj
+[139/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/bitarray.c.obj
+[140/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_core.c.obj
+[141/269] Building C object zephyr/arch/common/CMakeFiles/isr_tables.dir/isr_tables.c.obj
+[142/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/os/cbprintf.c.obj
+[143/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fpu.c.obj
+[144/269] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/reset.S.obj
+[145/269] Building ASM object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi_on_reset.S.obj
+[146/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/fault.c.obj
+[147/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/scb.c.obj
+[148/269] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/vector_table.S.obj
+[149/269] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/fatal.c.obj
+[150/269] Building ASM object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/swap_helper.S.obj
+[151/269] Building C object zephyr/CMakeFiles/zephyr.dir/lib/utils/notify.c.obj
+[152/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread_abort.c.obj
+[153/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_manage.c.obj
+[154/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/nrf53/soc.c.obj
+[155/269] Building C object zephyr/arch/common/CMakeFiles/arch__common.dir/sw_isr_common.c.obj
+[156/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/exc_exit.c.obj
+[157/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/thread.c.obj
+[158/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/isr_wrapper.c.obj
+[159/269] Building C object zephyr/arch/arch/arm/core/CMakeFiles/arch__arm__core.dir/nmi.c.obj
+[160/269] Linking C static library zephyr/arch/common/libisr_tables.a
+[161/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/prep_c.c.obj
+[162/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/cpu_idle.c.obj
+[163/269] Building C object zephyr/arch/arch/arm/core/cortex_m/CMakeFiles/arch__arm__core__cortex_m.dir/irq_init.c.obj
+[164/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/log_msg.c.obj
+[165/269] Building C object zephyr/arch/arch/arm/core/cortex_m/cmse/CMakeFiles/arch__arm__core__cortex_m__cmse.dir/arm_core_cmse.c.obj
+[166/269] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_core_mpu.c.obj
+[167/269] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_mpu_regions.c.obj
+[168/269] Building C object zephyr/arch/arch/arm/core/mpu/CMakeFiles/arch__arm__core__mpu.dir/arm_mpu.c.obj
+[169/269] Building C object zephyr/lib/libc/newlib/CMakeFiles/lib__libc__newlib.dir/libc-hooks.c.obj
+[170/269] Building C object zephyr/lib/libc/common/CMakeFiles/lib__libc__common.dir/source/stdlib/abort.c.obj
+[171/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/debug/thread_analyzer/thread_analyzer.c.obj
+[172/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/validate_base_addresses.c.obj
+[173/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/validate_binding_headers.c.obj
+[174/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/validate_enabled_instances.c.obj
+[175/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/common/reboot.c.obj
+[176/269] Linking C static library zephyr/arch/arch/arm/core/libarch__arm__core.a
+[177/269] Building C object zephyr/drivers/console/CMakeFiles/drivers__console.dir/uart_console.c.obj
+[178/269] Building C object zephyr/drivers/gpio/CMakeFiles/drivers__gpio.dir/gpio_nrfx.c.obj
+[179/269] Building C object zephyr/soc/soc/nrf5340/CMakeFiles/soc__nordic.dir/nrf53/nrf53_cpunet_mgmt.c.obj
+[180/269] Building C object zephyr/subsys/random/CMakeFiles/subsys__random.dir/random_entropy_device.c.obj
+[181/269] Building C object zephyr/drivers/usb/common/nrf_usbd_common/CMakeFiles/drivers__usb__common__nrf_usbd_common.dir/nrf_usbd_common.c.obj
+[182/269] Linking C static library zephyr/arch/arch/arm/core/cortex_m/cmse/libarch__arm__core__cortex_m__cmse.a
+[183/269] Building C object zephyr/drivers/usb/device/CMakeFiles/drivers__usb__device.dir/usb_dc_nrfx.c.obj
+[184/269] Building C object zephyr/drivers/clock_control/CMakeFiles/drivers__clock_control.dir/clock_control_nrf.c.obj
+[185/269] Linking C static library zephyr/arch/common/libarch__common.a
+[186/269] Building C object zephyr/drivers/entropy/CMakeFiles/drivers__entropy.dir/opt/nrf_westworkspace/nrf/drivers/entropy/entropy_cc3xx.c.obj
+[187/269] Building C object zephyr/drivers/hwinfo/CMakeFiles/drivers__hwinfo.dir/hwinfo_nrf.c.obj
+[188/269] Linking C static library zephyr/arch/arch/arm/core/cortex_m/libarch__arm__core__cortex_m.a
+[189/269] Linking C static library zephyr/lib/libc/common/liblib__libc__common.a
+[190/269] Building C object zephyr/drivers/hwinfo/CMakeFiles/drivers__hwinfo.dir/hwinfo_weak_impl.c.obj
+[191/269] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/common.c.obj
+[192/269] Building C object zephyr/CMakeFiles/zephyr.dir/subsys/logging/backends/log_backend_uart.c.obj
+[193/269] Linking C static library zephyr/arch/arch/arm/core/mpu/libarch__arm__core__mpu.a
+[194/269] Linking C static library zephyr/lib/libc/newlib/liblib__libc__newlib.a
+[195/269] Linking C static library zephyr/drivers/console/libdrivers__console.a
+[196/269] Linking C static library zephyr/drivers/gpio/libdrivers__gpio.a
+[197/269] Linking C static library zephyr/soc/soc/nrf5340/libsoc__nordic.a
+[198/269] Linking C static library zephyr/subsys/random/libsubsys__random.a
+[199/269] Building C object zephyr/drivers/serial/CMakeFiles/drivers__serial.dir/opt/nrf_westworkspace/zephyr/misc/empty_file.c.obj
+[200/269] Generating linker_zephyr_pre0.cmd
+[201/269] Linking C static library zephyr/drivers/usb/common/nrf_usbd_common/libdrivers__usb__common__nrf_usbd_common.a
+[202/269] Linking C static library zephyr/drivers/usb/device/libdrivers__usb__device.a
+[203/269] Linking C static library zephyr/drivers/clock_control/libdrivers__clock_control.a
+[204/269] Building C object zephyr/drivers/pinctrl/CMakeFiles/drivers__pinctrl.dir/pinctrl_nrf.c.obj
+[205/269] Building C object zephyr/drivers/serial/CMakeFiles/drivers__serial.dir/uart_nrfx_uarte.c.obj
+[206/269] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/sys_clock_init.c.obj
+[207/269] Linking C static library zephyr/drivers/entropy/libdrivers__entropy.a
+[208/269] Building C object zephyr/CMakeFiles/zephyr_pre0.dir/misc/empty_file.c.obj
+[209/269] Building C object zephyr/drivers/timer/CMakeFiles/drivers__timer.dir/nrf_rtc_timer.c.obj
+[210/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/mdk/system_nrf5340_application.c.obj
+[211/269] Linking C static library zephyr/drivers/hwinfo/libdrivers__hwinfo.a
+[212/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/nrfx_glue.c.obj
+[213/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/helpers/nrfx_flag32_allocator.c.obj
+[214/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/helpers/nrfx_gppi_ppi.c.obj
+[215/269] Building C object modules/nrf/drivers/hw_cc3xx/CMakeFiles/..__nrf__drivers__hw_cc3xx.dir/hw_cc3xx.c.obj
+[216/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/helpers/nrfx_ram_ctrl.c.obj
+[217/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/helpers/nrfx_gppi_dppi.c.obj
+[218/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/drivers/src/nrfx_dppi.c.obj
+[219/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/drivers/src/nrfx_gpiote.c.obj
+[220/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/drivers/src/nrfx_clock.c.obj
+[221/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/drivers/src/nrfx_usbreg.c.obj
+[222/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/main_weak.c.obj
+[223/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/device.c.obj
+[224/269] Linking C static library zephyr/drivers/serial/libdrivers__serial.a
+[225/269] Building C object modules/hal_nordic/modules/hal_nordic/nrfx/CMakeFiles/modules__hal_nordic__nrfx.dir/opt/nrf_westworkspace/modules/hal/nordic/nrfx/drivers/src/nrfx_power.c.obj
+[226/269] Linking C static library zephyr/drivers/timer/libdrivers__timer.a
+[227/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/banner.c.obj
+[228/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/busy_wait.c.obj
+[229/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/errno.c.obj
+[230/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/fatal.c.obj
+[231/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/version.c.obj
+[232/269] Linking C static library zephyr/drivers/pinctrl/libdrivers__pinctrl.a
+[233/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/init.c.obj
+[234/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/kheap.c.obj
+[235/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mem_slab.c.obj
+[236/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/float.c.obj
+[237/269] Linking C static library zephyr/libzephyr.a
+[238/269] Linking C static library modules/nrf/drivers/hw_cc3xx/lib..__nrf__drivers__hw_cc3xx.a
+[239/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/idle.c.obj
+[240/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mailbox.c.obj
+[241/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mutex.c.obj
+[242/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/msg_q.c.obj
+[243/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sem.c.obj
+[244/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/queue.c.obj
+[245/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/stack.c.obj
+[246/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/work.c.obj
+[247/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/system_work_q.c.obj
+[248/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/condvar.c.obj
+[249/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/thread.c.obj
+[250/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/sched.c.obj
+[251/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/pipe.c.obj
+[252/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/thread_monitor.c.obj
+[253/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeslicing.c.obj
+[254/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/compiler_stack_protect.c.obj
+[255/269] Linking C static library modules/hal_nordic/modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a
+[256/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/xip.c.obj
+[257/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timer.c.obj
+[258/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/timeout.c.obj
+[259/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/events.c.obj
+[260/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/usage.c.obj
+[261/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/mempool.c.obj
+[262/269] Building C object zephyr/kernel/CMakeFiles/kernel.dir/dynamic_disabled.c.obj
+[263/269] Linking C static library zephyr/kernel/libkernel.a
+[264/269] Linking C executable zephyr/zephyr_pre0.elf
+FAILED: zephyr/zephyr_pre0.elf zephyr/zephyr_pre0.map /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/zephyr_pre0.map 
+: && ccache /opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc  -gdwarf-4 zephyr/CMakeFiles/zephyr_pre0.dir/misc/empty_file.c.obj -o zephyr/zephyr_pre0.elf  zephyr/CMakeFiles/offsets.dir/./arch/arm/core/offsets/offsets.c.obj  -T  zephyr/linker_zephyr_pre0.cmd  -Wl,-Map=/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr/zephyr_pre0.map  -Wl,--whole-archive  app/libapp.a  zephyr/libzephyr.a  zephyr/arch/common/libarch__common.a  zephyr/arch/arch/arm/core/libarch__arm__core.a  zephyr/arch/arch/arm/core/cortex_m/libarch__arm__core__cortex_m.a  zephyr/arch/arch/arm/core/cortex_m/cmse/libarch__arm__core__cortex_m__cmse.a  zephyr/arch/arch/arm/core/mpu/libarch__arm__core__mpu.a  zephyr/lib/libc/newlib/liblib__libc__newlib.a  zephyr/lib/libc/common/liblib__libc__common.a  zephyr/soc/soc/nrf5340/libsoc__nordic.a  zephyr/subsys/random/libsubsys__random.a  zephyr/drivers/usb/device/libdrivers__usb__device.a  zephyr/drivers/usb/common/nrf_usbd_common/libdrivers__usb__common__nrf_usbd_common.a  zephyr/drivers/clock_control/libdrivers__clock_control.a  zephyr/drivers/console/libdrivers__console.a  zephyr/drivers/entropy/libdrivers__entropy.a  zephyr/drivers/gpio/libdrivers__gpio.a  zephyr/drivers/hwinfo/libdrivers__hwinfo.a  zephyr/drivers/pinctrl/libdrivers__pinctrl.a  zephyr/drivers/serial/libdrivers__serial.a  zephyr/drivers/timer/libdrivers__timer.a  modules/nrf/drivers/hw_cc3xx/lib..__nrf__drivers__hw_cc3xx.a  modules/hal_nordic/modules/hal_nordic/nrfx/libmodules__hal_nordic__nrfx.a  -Wl,--no-whole-archive  zephyr/kernel/libkernel.a  -L/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr  zephyr/arch/common/libisr_tables.a  -mcpu=cortex-m33  -mthumb  -mabi=aapcs  -mfp16-format=ieee  -fuse-ld=bfd  -Wl,--gc-sections  -Wl,--build-id=none  -Wl,--sort-common=descending  -Wl,--sort-section=alignment  -Wl,-u,_OffsetAbsSyms  -Wl,-u,_ConfigAbsSyms  -nostdlib  -static  -Wl,-X  -Wl,-N  -Wl,--orphan-handling=warn  -Wl,-no-pie  -L"/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/arm-zephyr-eabi"/lib/thumb/v8-m.main/nofp  -u_printf_float  /opt/nrf_westworkspace/nrfxlib/crypto/nrf_cc312_platform/lib/cortex-m33/soft-float/no-interrupts/libnrf_cc312_platform_0.9.19.a  -lc -L"/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/thumb/v8-m.main/nofp" -lm -lc -lgcc -lc && cd /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart/zephyr && /usr/bin/cmake -E true
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: app/libapp.a(main.c.obj): in function `main':
+/30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:39: undefined reference to `dtruntime_format_devices_as_table'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:39: undefined reference to `dterr_new'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:41: undefined reference to `dtlog_info'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:43: undefined reference to `dtstr_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:49: undefined reference to `dtiox_zephyr_uartirq_create'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:49: undefined reference to `dterr_new'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:63: undefined reference to `dtiox_zephyr_uartirq_configure'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:72: undefined reference to `dterr_new'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:69: undefined reference to `dtframer_simple_create'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:72: undefined reference to `dtframer_simple_configure'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:77: undefined reference to `dtnetportal_iox_create'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:82: undefined reference to `dtnetportal_iox_configure'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:93: undefined reference to `dterr_new'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:86: undefined reference to `dtmc_base_demo_netportal_create'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:89: undefined reference to `dtmc_base_demo_netportal_configure'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:93: undefined reference to `dtmc_base_demo_netportal_start'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:99: undefined reference to `dtlog_dterr'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:101: undefined reference to `dterr_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:104: undefined reference to `dtmc_base_demo_netportal_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:108: undefined reference to `dtnetportal_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:110: undefined reference to `dtframer_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:112: undefined reference to `dtiox_dispose'
+/opt/toolchains/zephyr-sdk-0.17.2/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/../../../../arm-zephyr-eabi/bin/ld.bfd: /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/src/main.c:93: undefined reference to `dtuart_helper_default_config'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+FAILED: _sysbuild/sysbuild/images/demo_netportal_uart-prefix/src/demo_netportal_uart-stamp/demo_netportal_uart-build /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/_sysbuild/sysbuild/images/demo_netportal_uart-prefix/src/demo_netportal_uart-stamp/demo_netportal_uart-build 
+cd /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build/demo_netportal_uart && /usr/bin/cmake --build .
+ninja: build stopped: subcommand failed.
+FATAL ERROR: command exited with status 1: /usr/bin/cmake --build /30/david-erb-wip/dtmc_zephyr/apps/demo_netportal_uart/build
+

@@ -1,0 +1,24 @@
+&spi4 {
+    status = "okay";
+
+    cs-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+
+    canbus: mcp2515@0 {
+        compatible = "microchip,mcp2515";
+        reg = <0>;                       // CS index
+        spi-max-frequency = <1000000>;
+        int-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+        status = "okay";
+        label = "can0";                 // runtime binding name
+        osc-freq = <16000000>;
+        bus-speed = <500000>;
+
+        /* timing properties as needed... */
+    };
+};
+
+/ {
+    chosen {
+        zephyr,canbus = &canbus;
+    };
+};
