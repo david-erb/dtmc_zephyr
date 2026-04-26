@@ -2,8 +2,7 @@
 **/build*/
 
 .claude
-
-submodules/
+CLAUDE.md
 
 # mkdocs output
 mkdocs/site

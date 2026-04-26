@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  zephyr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: ghcr.io/david-erb/docker30-nrf2:latest
+    strategy:
+      matrix:
+        app: [test_dry]
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Run
+        run: bash scripts/ci_zephyr.sh ${{ matrix.app }}
