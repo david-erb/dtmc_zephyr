@@ -1,0 +1,9 @@
+/*
+ * Enable TIMER1 as a Zephyr counter device for dtinterval_zephyr_counter.
+ * TIMER1 runs at 1MHz (16MHz HFXO / prescaler 4) giving 1us resolution.
+ * It is not used by the Zephyr kernel or BT stack on the nRF5340 app core.
+ */
+&timer1 {
+    status = "okay";
+    prescaler = <4>;
+};

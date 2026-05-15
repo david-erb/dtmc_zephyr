@@ -8,7 +8,28 @@
  * interval and delivers results via a per-scan callback. An optional tasker
  * info callback provides runtime task diagnostics.
  *
- * cdox v1.0.2
+ * Counter peripheral requirement
+ * ------------------------------
+ * Scan timing and scan timestamps are driven directly by a Zephyr counter
+ * device.  A hardware TIMER peripheral (e.g. timer1 on nRF5340) is recommended
+ * for microsecond-accurate intervals; RTC-based counters also work but give
+ * coarser resolution.
+ *
+ * Devicetree: any counter node with status = "okay" may be used, e.g.:
+ *
+ *   &timer1 { status = "okay"; };   // nRF5340: timer0..timer2 are available
+ *
+ * Kconfig: CONFIG_COUNTER=y
+ *
+ * Configuration: pass the chosen device pointer in dtadc_zephyr_saadc_config_t::counter_dev:
+ *
+ *   cfg.counter_dev = DEVICE_DT_GET(DT_NODELABEL(timer1));  // use whichever node is free
+ *
+ * Note: nRF TIMER peripherals require HFXO to remain active.  If power
+ * management is enabled, ensure the application or PM policy keeps HFXO on
+ * while the ADC is active (or use CONFIG_PM=n during development).
+ *
+ * cdox v1.0.2.2
  */
 #pragma once
 
@@ -16,7 +37,9 @@
 #include <stdint.h>
 
 #include <hal/nrf_saadc.h>
+#include <zephyr/device.h>
 #include <zephyr/drivers/adc.h>
+#include <zephyr/drivers/counter.h>
 
 #include <dtmc_base/dtadc.h>
 #include <dtmc_base/dtadc_scan.h>
@@ -43,6 +66,10 @@ typedef struct dtadc_zephyr_saadc_config_t
 
     int32_t channel_count;
     dtadc_zephyr_saadc_channel_config_t channels[DTADC_ZEPHYR_SAADC_MAX_CHANNELS];
+
+    // counter peripheral used to drive the scan interval timer;
+    // e.g. DEVICE_DT_GET(DT_NODELABEL(timer2))
+    const struct device* counter_dev;
 
     dttasker_info_callback_t tasker_info_callback_fn;
     void* tasker_info_callback_context;

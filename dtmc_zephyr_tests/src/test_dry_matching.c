@@ -31,6 +31,7 @@ test_dtmc_zephyr_dry_matching(DTUNITTEST_SUITE_ARGS)
     unittest_control->ledgers = ledgers;
 
     DTUNITTEST_RUN_SUITE(test_dtmc_zephyr_dtcpu);
+    DTUNITTEST_RUN_SUITE(test_dtmc_zephyr_dtinterval);
 
     unittest_control->test_setup = NULL;
     unittest_control->test_teardown = NULL;

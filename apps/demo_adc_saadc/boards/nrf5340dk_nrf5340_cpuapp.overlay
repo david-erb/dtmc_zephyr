@@ -1,3 +1,8 @@
+&timer1 {
+    status = "okay";
+    prescaler = <4>;
+};
+
 /* a second UART (uart1) on Tx=P1.01 Rx=P1.00 */
 &uart1 {
     label = "demo_uart";

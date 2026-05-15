@@ -48,6 +48,7 @@ main(int argc, char* argv[])
 
         dtadc_zephyr_saadc_config_t c = { 0 };
         dtadc_zephyr_saadc_config_init_defaults(&c);
+        c.counter_dev = DEVICE_DT_GET(DT_NODELABEL(timer1));
         DTERR_C(dtadc_zephyr_saadc_configure(o, &c));
     }
 

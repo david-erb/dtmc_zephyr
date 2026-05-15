@@ -27,11 +27,9 @@
 #include <dtmc_base/dtadc.h>
 #include <dtmc_base/dtlock.h>
 #include <dtmc_base/dtruntime.h>
-#include <dtmc_base/dtsemaphore.h>
 #include <dtmc_base/dttasker.h>
 
 #include <dtmc/dtadc_zephyr_saadc.h>
-
 #include <dtmc/dtmc.h>
 
 #define TAG "dtadc_zephyr_saadc"
@@ -73,14 +71,23 @@ typedef struct dtadc_zephyr_saadc_t
     // protects status and activation state
     dtlock_handle lock;
 
-    // signal to background reader task to stop when deactivated
-    dtsemaphore_handle reader_tasker_should_stop_semaphore;
-
     // high priority background task continuously reads scans from the hardware
     dttasker_handle reader_tasker_handle;
 
+    // counter peripheral drives the scan cadence; ISR posts tick_sem each period
+    struct k_sem tick_sem;
+    uint32_t period_ticks;
+    uint32_t next_alarm;
+    bool should_pause;
+
+    // wrap-safe 64-bit counter for timestamps
+    uint32_t counter_prev;
+    uint64_t counter_base;
+
     dtadc_scan_callback_fn scan_callback_fn;
     void* scan_callback_context;
+
+    uint64_t sequence_number;
 
     // re-used scan payload
     dtadc_scan_t scan;
@@ -95,6 +102,12 @@ typedef struct dtadc_zephyr_saadc_t
 
     dtadc_status_t status;
 } dtadc_zephyr_saadc_t;
+
+static void
+_alarm_handler(const struct device* dev, uint8_t chan, uint32_t ticks, void* user_data);
+
+static dterr_t*
+dtadc_zephyr_saadc__on_tick(dtadc_zephyr_saadc_t* self);
 
 static dterr_t*
 dtadc_zephyr_saadc__reader_task_entry(void* arg, dttasker_handle tasker_handle);
@@ -274,7 +287,50 @@ dtadc_zephyr_saadc_activate(dtadc_zephyr_saadc_t* self DTADC_ACTIVATE_ARGS)
     self->status.state = DTADC_STATE_STARTING;
 
     DTERR_C(dtadc_zephyr_saadc__open_hardware(self));
-    DTERR_C(dtsemaphore_create(&self->reader_tasker_should_stop_semaphore, 0, 0));
+
+    {
+        uint32_t freq = counter_get_frequency(self->config.counter_dev);
+        if (freq == 0)
+        {
+            dterr = dterr_new(DTERR_FAIL, DTERR_LOC, NULL, "counter_get_frequency returned 0");
+            goto cleanup;
+        }
+
+        self->period_ticks = (uint32_t)((uint64_t)freq * (uint64_t)self->config.scan_interval_ms / 1000);
+        if (self->period_ticks == 0)
+        {
+            dterr = dterr_new(DTERR_FAIL, DTERR_LOC, NULL, "scan interval rounds to 0 counter ticks");
+            goto cleanup;
+        }
+
+        k_sem_init(&self->tick_sem, 0, 1);
+        self->should_pause = false;
+        self->counter_prev = 0;
+        self->counter_base = 0;
+
+        if (counter_start(self->config.counter_dev) != 0)
+        {
+            dterr = dterr_new(DTERR_FAIL, DTERR_LOC, NULL, "counter_start failed");
+            goto cleanup;
+        }
+
+        uint32_t now = 0;
+        counter_get_value(self->config.counter_dev, &now);
+        self->next_alarm = now + self->period_ticks;
+
+        struct counter_alarm_cfg alarm_cfg = {
+            .callback = _alarm_handler,
+            .ticks = self->next_alarm,
+            .user_data = self,
+            .flags = COUNTER_ALARM_CFG_ABSOLUTE,
+        };
+        if (counter_set_channel_alarm(self->config.counter_dev, 0, &alarm_cfg) != 0)
+        {
+            counter_stop(self->config.counter_dev);
+            dterr = dterr_new(DTERR_FAIL, DTERR_LOC, NULL, "counter_set_channel_alarm failed");
+            goto cleanup;
+        }
+    }
 
     {
         dttasker_config_t c = { 0 };
@@ -299,9 +355,9 @@ cleanup:
 
     if (dterr)
     {
+        counter_cancel_channel_alarm(self->config.counter_dev, 0);
+        counter_stop(self->config.counter_dev);
         dtadc_zephyr_saadc__close_hardware(self);
-        dtsemaphore_dispose(self->reader_tasker_should_stop_semaphore);
-        self->reader_tasker_should_stop_semaphore = NULL;
         dttasker_dispose(self->reader_tasker_handle);
         self->reader_tasker_handle = NULL;
         self->is_active = false;
@@ -328,8 +384,10 @@ dtadc_zephyr_saadc_deactivate(dtadc_zephyr_saadc_t* self DTADC_DEACTIVATE_ARGS)
     if (!self->is_active)
         goto cleanup;
 
-    if (self->reader_tasker_should_stop_semaphore)
-        DTERR_C(dtsemaphore_post(self->reader_tasker_should_stop_semaphore));
+    counter_cancel_channel_alarm(self->config.counter_dev, 0);
+    counter_stop(self->config.counter_dev);
+    self->should_pause = true;
+    k_sem_give(&self->tick_sem);
 
     if (is_locked)
     {
@@ -354,9 +412,6 @@ dtadc_zephyr_saadc_deactivate(dtadc_zephyr_saadc_t* self DTADC_DEACTIVATE_ARGS)
 
     dttasker_dispose(self->reader_tasker_handle);
     self->reader_tasker_handle = NULL;
-
-    dtsemaphore_dispose(self->reader_tasker_should_stop_semaphore);
-    self->reader_tasker_should_stop_semaphore = NULL;
 
     dtadc_zephyr_saadc__close_hardware(self);
 
@@ -388,9 +443,6 @@ dtadc_zephyr_saadc_dispose(dtadc_zephyr_saadc_t* self)
 
     dttasker_dispose(self->reader_tasker_handle);
     self->reader_tasker_handle = NULL;
-
-    dtsemaphore_dispose(self->reader_tasker_should_stop_semaphore);
-    self->reader_tasker_should_stop_semaphore = NULL;
 
     dtlock_dispose(self->lock);
     self->lock = NULL;
@@ -474,14 +526,100 @@ cleanup:
 }
 
 // -----------------------------------------------------------------------------
+// Counter alarm ISR: re-arm at next absolute tick then wake the reader task.
+
+static void
+_alarm_handler(const struct device* dev, uint8_t chan, uint32_t ticks, void* user_data)
+{
+    dtadc_zephyr_saadc_t* self = (dtadc_zephyr_saadc_t*)user_data;
+    self->next_alarm += self->period_ticks;
+    struct counter_alarm_cfg cfg = {
+        .callback = _alarm_handler,
+        .ticks = self->next_alarm,
+        .user_data = self,
+        .flags = COUNTER_ALARM_CFG_ABSOLUTE | COUNTER_ALARM_CFG_EXPIRE_WHEN_LATE,
+    };
+    counter_set_channel_alarm(dev, 0, &cfg);
+    k_sem_give(&self->tick_sem);
+}
+
+// -----------------------------------------------------------------------------
+// Convert a raw counter value to a 64-bit nanosecond timestamp, tracking wraps.
+// Called only from the reader task so no locking needed.
+
+static uint64_t
+_counter_ticks_to_ns(dtadc_zephyr_saadc_t* self, uint32_t now)
+{
+    uint32_t top = counter_get_top_value(self->config.counter_dev);
+    if (now < self->counter_prev)
+        self->counter_base += (uint64_t)top + 1;
+    self->counter_prev = now;
+    uint64_t total = self->counter_base + now;
+    uint32_t freq = counter_get_frequency(self->config.counter_dev);
+    return total / freq * 1000000000ULL
+         + total % freq * 1000000000ULL / freq;
+}
+
+// -----------------------------------------------------------------------------
 // Reader task
+
+static dterr_t*
+dtadc_zephyr_saadc__on_tick(dtadc_zephyr_saadc_t* self)
+{
+    dterr_t* dterr = NULL;
+    int32_t i;
+
+    // Stamp before reads using the counter peripheral directly.
+    // _counter_ticks_to_ns() tracks wraps to give a monotonic 64-bit ns value
+    // at the counter's native resolution with no dependency on
+    // CONFIG_SYS_CLOCK_TICKS_PER_SEC.
+    {
+        uint32_t now = 0;
+        counter_get_value(self->config.counter_dev, &now);
+        self->scan.timestamp_ns = _counter_ticks_to_ns(self, now);
+    }
+
+    for (i = 0; i < self->config.channel_count; i++)
+    {
+        int16_t raw16 = 0;
+        struct adc_sequence sequence;
+
+        memset(&sequence, 0, sizeof(sequence));
+        sequence.channels = BIT((uint32_t)self->channel_runtime[i].channel_id);
+        sequence.buffer = &raw16;
+        sequence.buffer_size = sizeof(raw16);
+        sequence.resolution = self->channel_runtime[i].resolution;
+        sequence.oversampling = 0;
+        sequence.calibrate = false;
+
+        if (adc_read(self->adc_dev, &sequence) != 0)
+        {
+            dterr = dterr_new(DTERR_STATE,
+              DTERR_LOC,
+              NULL,
+              "adc_read failed for channel_id=%d (%s)",
+              self->channel_runtime[i].channel_id,
+              dtadc_zephyr_saadc__input_positive_to_string(self->channel_runtime[i].input_positive));
+            goto cleanup;
+        }
+
+        self->channels[i] = (int32_t)raw16;
+    }
+
+    self->scan.channels = self->channels;
+    self->scan.sequence_number = self->sequence_number++;
+
+    DTERR_C(self->scan_callback_fn(self->scan_callback_context, &self->scan));
+
+cleanup:
+    return dterr;
+}
 
 static dterr_t*
 dtadc_zephyr_saadc__reader_task_entry(void* arg, dttasker_handle tasker_handle)
 {
     dterr_t* dterr = NULL;
     dtadc_zephyr_saadc_t* self = (dtadc_zephyr_saadc_t*)arg;
-    int32_t i;
 
     DTERR_ASSERT_NOT_NULL(self);
 
@@ -489,48 +627,12 @@ dtadc_zephyr_saadc__reader_task_entry(void* arg, dttasker_handle tasker_handle)
 
     DTERR_C(dttasker_ready(tasker_handle));
 
-    uint64_t sequence_number = 0;
-
-    for (;;)
+    while (!self->should_pause)
     {
-        bool was_timeout = false;
-
-        DTERR_C(dtsemaphore_wait(self->reader_tasker_should_stop_semaphore, self->config.scan_interval_ms, &was_timeout));
-        if (!was_timeout)
+        k_sem_take(&self->tick_sem, K_FOREVER);
+        if (self->should_pause)
             break;
-
-        for (i = 0; i < self->config.channel_count; i++)
-        {
-            int16_t raw16 = 0;
-            struct adc_sequence sequence;
-
-            memset(&sequence, 0, sizeof(sequence));
-            sequence.channels = BIT((uint32_t)self->channel_runtime[i].channel_id);
-            sequence.buffer = &raw16;
-            sequence.buffer_size = sizeof(raw16);
-            sequence.resolution = self->channel_runtime[i].resolution;
-            sequence.oversampling = 0;
-            sequence.calibrate = false;
-
-            if (adc_read(self->adc_dev, &sequence) != 0)
-            {
-                dterr = dterr_new(DTERR_STATE,
-                  DTERR_LOC,
-                  NULL,
-                  "adc_read failed for channel_id=%d (%s)",
-                  self->channel_runtime[i].channel_id,
-                  dtadc_zephyr_saadc__input_positive_to_string(self->channel_runtime[i].input_positive));
-                goto cleanup;
-            }
-
-            self->channels[i] = (int32_t)raw16;
-        }
-
-        self->scan.channels = self->channels;
-        self->scan.timestamp_ns = dtruntime_now_milliseconds() * 1000000ULL;
-        self->scan.sequence_number = sequence_number++;
-
-        DTERR_C(self->scan_callback_fn(self->scan_callback_context, &self->scan));
+        DTERR_C(dtadc_zephyr_saadc__on_tick(self));
     }
 
 cleanup:
@@ -567,6 +669,12 @@ dtadc_zephyr_saadc__validate_config(const dtadc_zephyr_saadc_config_t* cfg)
     int32_t j;
 
     DTERR_ASSERT_NOT_NULL(cfg);
+
+    if (cfg->counter_dev == NULL)
+    {
+        dterr = dterr_new(DTERR_BADARG, DTERR_LOC, NULL, "counter_dev must not be NULL");
+        goto cleanup;
+    }
 
     if (cfg->scan_interval_ms <= 0)
     {

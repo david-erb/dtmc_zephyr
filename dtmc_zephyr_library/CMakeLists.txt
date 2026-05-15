@@ -30,6 +30,10 @@ if (NOT CONFIG_ADC)
     list(FILTER MY_SOURCES EXCLUDE REGEX "/dtadc_zephyr_saadc")
 endif()
 
+if (NOT CONFIG_COUNTER)
+    list(FILTER MY_SOURCES EXCLUDE REGEX "/dtinterval_zephyr_counter")
+endif()
+
 if (NOT CONFIG_GPIO)
     list(FILTER MY_SOURCES EXCLUDE REGEX "/dtgpiopin_zephyr*")
 endif()
