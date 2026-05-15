@@ -2,24 +2,19 @@
 
 #include <dtcore_tests.h>
 #include <dtmc_base_tests.h>
-#include <dtmc_zephyr_tests.h>
 #include <dtmc_services_tests.h>
+#include <dtmc_zephyr_tests.h>
 
 int
-main(int argc, char* argv[])
+main(void)
 {
     dtunittest_control_t unittest_control = { 0 };
     unittest_control.should_print_suites = true;
     unittest_control.should_print_tests = false;
     unittest_control.should_print_errors = true;
 
-    if (argc > 1)
-    {
-        unittest_control.pattern = argv[1];
-    }
-
-    // if (unittest_control.pattern == NULL)
-    //     unittest_control.pattern = "tasker_registry";
+    if (unittest_control.pattern == NULL)
+        unittest_control.pattern = "test_dtmc_services_dtservices";
 
     test_dtcore_matching(&unittest_control);
 

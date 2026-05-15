@@ -289,6 +289,10 @@ dttasker_join(dttasker_handle self_handle, dttimeout_millis_t timeout_millis, bo
     // Fast path: task already exited.
     if (atomic_load_explicit(&self->task_exited, memory_order_acquire))
     {
+        // k_thread_join removes the k_thread from Zephyr's thread list.
+        // Without this, dttasker_dispose() would free the k_thread struct
+        // while it is still referenced by the kernel, corrupting the scheduler.
+        k_thread_join(self->thread_id, K_FOREVER);
         atomic_store_explicit(&self->task_joined, true, memory_order_release);
         atomic_store_explicit(&self->task_created, false, memory_order_release);
         goto cleanup;
@@ -325,6 +329,7 @@ dttasker_join(dttasker_handle self_handle, dttimeout_millis_t timeout_millis, bo
         goto cleanup;
     }
 
+    k_thread_join(self->thread_id, K_FOREVER);
     atomic_store_explicit(&self->task_joined, true, memory_order_release);
     atomic_store_explicit(&self->task_created, false, memory_order_release);
 
